@@ -20,14 +20,20 @@ public class LookAtCursor : MonoBehaviour
             Vector3 pos = hit.point - player.transform.position;
             if (pos.magnitude < lookDistance)
             {
-                gun.transform.LookAt(hit.point);
+                if (gun != null)
+                {
+                    gun.transform.LookAt(hit.point);
+                }
                 return;
             }
             rotation.LookAt(hit.point);
             Quaternion lookat = new Quaternion(0, rotation.transform.rotation.y, 0, rotation.transform.rotation.w);
 
             player.transform.rotation = lookat;
-            gun.transform.LookAt(hit.point);
+            if(gun != null)
+            {
+                gun.transform.LookAt(hit.point);
+            }
         }
     }
 }

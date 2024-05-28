@@ -8,6 +8,7 @@ public class GunSystem : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject firepoint;
     [SerializeField] float bulletSpeed = 1;
+    [SerializeField] int damage = 1;
     [SerializeField] bool automatic = true;
 
     private float lastTimeShot = 0;
@@ -42,6 +43,7 @@ public class GunSystem : MonoBehaviour
                 GameObject projectile = GameObject.Instantiate(bullet, firepoint.transform.position, firepoint.transform.rotation);
                 projectile.transform.LookAt(hit.point);
                 projectile.GetComponent<ProjectileBehavior>().projectileSpeed = bulletSpeed;
+                projectile.GetComponent<ProjectileBehavior>().damage = damage;
             }
         }
     }

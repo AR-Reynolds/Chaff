@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6908118271617285335}
   - component: {fileID: 8764406469859365758}
   m_Layer: 8
-  m_Name: Bullet
+  m_Name: UtilBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,9 +131,10 @@ MonoBehaviour:
   despawnOnCollision: 1
   despawnOnTimer: 1
   despawnTimer: 3
-  spawnDamageZone: 0
-  damageZone: {fileID: 0}
-  zoneDespawnTimer: 0
+  spawnDamageZone: 1
+  damageZone: {fileID: 6800344127989487078, guid: 6e7bcbe41628ee44f817e29e4da53f51,
+    type: 3}
+  zoneDespawnTimer: 5
   projectileSpeed: 55
   damage: 1
 --- !u!1 &6921636510595706775
