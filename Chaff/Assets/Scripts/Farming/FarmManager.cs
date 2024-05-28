@@ -5,6 +5,7 @@ using UnityEngine;
 public class FarmManager : MonoBehaviour
 {
     public List<FarmObject> currentCrops;
+    public int growthCheckInSeconds = 1;
 
     private bool growth;
 
@@ -40,9 +41,44 @@ public class FarmManager : MonoBehaviour
         growth = true;
         while (growth)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(growthCheckInSeconds);
             Debug.Log("Attempting growth cycle");
             Grow();
+        }
+    }
+
+    public void Harvest(GameObject plantToHarvest)
+    {
+        FarmObject farmObj = plantToHarvest.GetComponent<FarmObject>();
+        if(farmObj == null || !farmObj.harvestable)
+        {
+            return;
+        }
+        if(farmObj.reusable)
+        {
+            farmObj.harvestable = false;
+            farmObj.ResetPlant();
+            foreach(var output in farmObj.outputs)
+            {
+                int randomChance = Random.Range(0, 100);
+                if(randomChance <= output.outputChance)
+                {
+                    FindFirstObjectByType<PlayerInventory>().AddtoInventory(output.item.itemNumberID, output.outputAmount);
+                }
+            }
+        }
+        else
+        {
+            farmObj.harvestable = false;
+            foreach (var output in farmObj.outputs)
+            {
+                int randomChance = Random.Range(0, 100);
+                if (randomChance <= output.outputChance)
+                {
+                    FindFirstObjectByType<PlayerInventory>().AddtoInventory(output.item.itemNumberID, output.outputAmount);
+                }
+            }
+            Destroy(plantToHarvest);
         }
     }
 
