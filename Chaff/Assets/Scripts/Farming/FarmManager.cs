@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FarmManager : MonoBehaviour
 {
+    public List<FarmObject> referenceCrops;
+
     public List<FarmObject> currentCrops;
     public int growthCheckInSeconds = 1;
 
@@ -47,6 +49,20 @@ public class FarmManager : MonoBehaviour
         }
     }
 
+    public void PlantCrop(GameObject cropToPlant, Vector3 placementPos)
+    {
+        GameObject newCrop = Instantiate(cropToPlant, placementPos, Quaternion.identity);
+        if(currentCrops.Count == 0)
+        {
+            newCrop.GetComponent<FarmObject>().cropID = 0;
+            currentCrops.Add(newCrop.GetComponent<FarmObject>());
+            return;
+        }
+        newCrop.GetComponent<FarmObject>().cropID = currentCrops.Count + 1;
+        currentCrops.Add(newCrop.GetComponent<FarmObject>());
+    }
+
+
     public void Harvest(GameObject plantToHarvest)
     {
         FarmObject farmObj = plantToHarvest.GetComponent<FarmObject>();
@@ -69,6 +85,8 @@ public class FarmManager : MonoBehaviour
         }
         else
         {
+            FarmObject cropToRemove = currentCrops.Find(i => i.cropID == farmObj.cropID);
+
             farmObj.harvestable = false;
             foreach (var output in farmObj.outputs)
             {
@@ -77,6 +95,10 @@ public class FarmManager : MonoBehaviour
                 {
                     FindFirstObjectByType<PlayerInventory>().AddtoInventory(output.item.itemNumberID, output.outputAmount);
                 }
+            }
+            if(cropToRemove != null)
+            {
+                currentCrops.Remove(cropToRemove);
             }
             Destroy(plantToHarvest);
         }

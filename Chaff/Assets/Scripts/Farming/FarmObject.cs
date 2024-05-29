@@ -8,6 +8,8 @@ public class FarmObject : MonoBehaviour
     public int currentGrowthLevel = 0;
     public bool harvestable = false;
     public bool reusable = false;
+    public int cropID = 0;
+    public string cropNameID = "Corn";
 
     public int maxGrowthLevel = 5;
     public float growthChance = 35f;
