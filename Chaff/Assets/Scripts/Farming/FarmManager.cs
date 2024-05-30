@@ -49,9 +49,10 @@ public class FarmManager : MonoBehaviour
         }
     }
 
-    public void PlantCrop(GameObject cropToPlant, Vector3 placementPos)
+    public void PlantCrop(GameObject cropToPlant, Vector3 placementPos, GameObject parent)
     {
         GameObject newCrop = Instantiate(cropToPlant, placementPos, Quaternion.identity);
+        newCrop.transform.parent = parent.transform;
         if(currentCrops.Count == 0)
         {
             newCrop.GetComponent<FarmObject>().cropID = 0;
@@ -100,6 +101,7 @@ public class FarmManager : MonoBehaviour
             {
                 currentCrops.Remove(cropToRemove);
             }
+            plantToHarvest.transform.parent.parent.GetComponent<CropPlot>().plotUsed = false;
             Destroy(plantToHarvest);
         }
     }

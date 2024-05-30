@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject utility;
     [SerializeField] GameObject placetoInstantiate;
 
-    [SerializeField] private Canvas cropSelectionCanvas;
+    [SerializeField] public Canvas cropSelectionCanvas;
     public GameObject cropPlot;
 
     private void Awake()
@@ -19,6 +19,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            FindFirstObjectByType<PlayerInventory>().AddtoInventory(2, 1);
+            FindFirstObjectByType<PlayerInventory>().AddtoInventory(4, 1);
+        }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             GameObject thingtoLook = Instantiate(gun, placetoInstantiate.transform.position, Quaternion.identity);
@@ -36,7 +41,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log(other.gameObject.name);
         if (other.gameObject.tag == "PlantTrigger")
         {
             if (Input.GetKeyDown(KeyCode.F))
@@ -46,11 +50,20 @@ public class Player : MonoBehaviour
         }
         else if (other.gameObject.tag == "CropPlot")
         {
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (!other.gameObject.GetComponent<CropPlot>().plotUsed)
             {
                 cropSelectionCanvas.enabled = true;
                 cropPlot = other.gameObject;
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "CropPlot")
+        {
+            cropSelectionCanvas.enabled = false;
+            cropPlot = null;
         }
     }
 }

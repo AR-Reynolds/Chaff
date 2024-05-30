@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using static UnityEditor.Progress;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -19,7 +21,7 @@ public class PlayerInventory : MonoBehaviour
     private ItemList itemIndex;
     private void Awake()
     {
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(gameObject);
         itemIndex = FindFirstObjectByType<ItemList>();
     }
 
@@ -41,14 +43,28 @@ public class PlayerInventory : MonoBehaviour
     public void AddtoInventory(int itemID, int amountToAdd)
     {
         Item item = itemIndex.FindItem(itemID);
+        Debug.Log(item + "ojrog");
 
-        if(playerInventory.Count > 0 && item != null)
+        if(playerInventory.Count > 0)
         {
-            foreach (ItemInfo itemInfo in playerInventory)
+            if(item != null)
             {
-                ItemInfo itemtoFind = playerInventory.Find((i) => i.inventory_itemID == item.itemID);
+                ItemInfo itemtoFind = playerInventory.Find(i => i.inventory_itemID == item.itemID);
 
-                itemtoFind.inventory_quantity += amountToAdd;
+                if (itemtoFind != null)
+                {
+                    itemtoFind.inventory_quantity += amountToAdd;
+                }
+                else
+                {
+                    ItemInfo newItem = new ItemInfo();
+                    newItem.inventory_itemID = item.itemID;
+                    newItem.inventory_itemNumberID = item.itemNumberID;
+                    newItem.inventoryTag = item.inventoryTag;
+                    newItem.inventory_quantity = amountToAdd;
+
+                    playerInventory.Add(newItem);
+                }
             }
         }
         else
@@ -57,6 +73,7 @@ public class PlayerInventory : MonoBehaviour
             newItem.inventory_itemID = item.itemID;
             newItem.inventory_itemNumberID = item.itemNumberID;
             newItem.inventoryTag = item.inventoryTag;
+            newItem.inventory_quantity = amountToAdd;
 
             playerInventory.Add(newItem);
         }
@@ -80,6 +97,31 @@ public class PlayerInventory : MonoBehaviour
         else
         {
             Debug.Log("Could not find!");
+        }
+    }
+
+    public ItemInfo FindInventoryItem(int itemID)
+    {
+        Item item = itemIndex.FindItem(itemID);
+
+        if (playerInventory.Count > 0 && item != null)
+        {
+            ItemInfo itemtoFind = playerInventory.Find((i) => i.inventory_itemID == item.itemID);
+
+            if(itemtoFind != null)
+            {
+                return itemtoFind;
+            }
+            else
+            {
+                Debug.Log("Could not find!");
+                return null;
+            }
+        }
+        else
+        {
+            Debug.Log("Could not find!");
+            return null;
         }
     }
 

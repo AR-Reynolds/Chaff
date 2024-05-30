@@ -37,6 +37,7 @@ public class PlayerCropManager : MonoBehaviour
     public void SelectCrop(GameObject button)
     {
         player.cropPlot.GetComponent<CropPlot>().Crop(button.GetComponent<Button>());
+        player.cropSelectionCanvas.enabled = false;
     }
 
 }
