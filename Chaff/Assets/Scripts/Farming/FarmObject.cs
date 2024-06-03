@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using DG.Tweening;
 using UnityEngine;
 
 public class FarmObject : MonoBehaviour
@@ -31,7 +33,7 @@ public class FarmObject : MonoBehaviour
     private void Awake()
     {
         initSize = transform.localScale;
-        growthChance += (Random.Range(-10, 10));
+        growthChance += (Random.Range(-15, 10));
     }
 
     public void GrowthScale()
@@ -55,11 +57,9 @@ public class FarmObject : MonoBehaviour
 
         if(reusable)
         {
-            float x = growingCrop.transform.localScale.x;
-            float y = growingCrop.transform.localScale.y;
-            float z = growingCrop.transform.localScale.z;
+            Vector3 currentGrowth = new Vector3(currentGrowthLevel, currentGrowthLevel, currentGrowthLevel);
 
-            growingCrop.transform.localScale = new Vector3(x + currentGrowthLevel * 0.2f, y + currentGrowthLevel * 0.2f, z + currentGrowthLevel * 0.2f);
+            growingCrop.transform.DOScale(growingCrop.transform.localScale + currentGrowth * 0.2f, 1);
         }
     }
 

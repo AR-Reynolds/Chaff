@@ -8,6 +8,8 @@ public class GunSystem : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject firepoint;
     [SerializeField] float bulletSpeed = 1;
+    [SerializeField] int bulletAmount = 5;
+    [SerializeField] int bulletCount = 5;
     [SerializeField] int damage = 1;
     [SerializeField] bool automatic = true;
 
@@ -40,10 +42,14 @@ public class GunSystem : MonoBehaviour
             if(lastTimeShot + firingSpeed <= Time.time)
             {
                 lastTimeShot = Time.time;
-                GameObject projectile = GameObject.Instantiate(bullet, firepoint.transform.position, firepoint.transform.rotation);
-                projectile.transform.LookAt(hit.point);
-                projectile.GetComponent<ProjectileBehavior>().projectileSpeed = bulletSpeed;
-                projectile.GetComponent<ProjectileBehavior>().damage = damage;
+                for(int i = 0; i < bulletCount; i++)
+                {
+                    GameObject projectile = GameObject.Instantiate(bullet, firepoint.transform.position, firepoint.transform.rotation);
+                    projectile.transform.LookAt(hit.point);
+                    projectile.GetComponent<ProjectileBehavior>().projectileSpeed = bulletSpeed;
+                    projectile.GetComponent<ProjectileBehavior>().damage = damage;
+                }
+
             }
         }
     }

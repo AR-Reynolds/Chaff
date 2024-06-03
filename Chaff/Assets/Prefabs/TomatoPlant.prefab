@@ -255,16 +255,28 @@ PrefabInstance:
       value: TomatoPlant
       objectReference: {fileID: 0}
     - target: {fileID: 4000010563502654, guid: 054e8622a5bae1644b0baa6708dbbc5d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.956
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010563502654, guid: 054e8622a5bae1644b0baa6708dbbc5d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.956
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010563502654, guid: 054e8622a5bae1644b0baa6708dbbc5d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.956
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010563502654, guid: 054e8622a5bae1644b0baa6708dbbc5d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.315
       objectReference: {fileID: 0}
     - target: {fileID: 4000010563502654, guid: 054e8622a5bae1644b0baa6708dbbc5d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.413
+      value: 1.571
       objectReference: {fileID: 0}
     - target: {fileID: 4000010563502654, guid: 054e8622a5bae1644b0baa6708dbbc5d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.039
+      value: 0.0402
       objectReference: {fileID: 0}
     - target: {fileID: 4000010563502654, guid: 054e8622a5bae1644b0baa6708dbbc5d, type: 3}
       propertyPath: m_LocalRotation.w

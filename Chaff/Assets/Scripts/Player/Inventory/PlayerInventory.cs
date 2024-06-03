@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Rendering;
 using static UnityEditor.Progress;
 
@@ -10,6 +11,7 @@ public class PlayerInventory : MonoBehaviour
     public class ItemInfo
     {
         public string inventory_itemID = null;
+        public Image inventoryIcon = null;
         public int inventory_quantity = 0;
         public int inventory_itemNumberID = 0;
         public bool inventory_equipped = false;
@@ -18,11 +20,15 @@ public class PlayerInventory : MonoBehaviour
 
     public List<ItemInfo> playerInventory;
 
-    private ItemList itemIndex;
+    public ItemList itemIndex;
+    InventoryUI itemUI;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         itemIndex = FindFirstObjectByType<ItemList>();
+        itemUI = FindFirstObjectByType<InventoryUI>();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void Update()
@@ -37,7 +43,6 @@ public class PlayerInventory : MonoBehaviour
             Cursor.visible = true;
 
         }
-
     }
 
     public void AddtoInventory(int itemID, int amountToAdd)
@@ -64,6 +69,7 @@ public class PlayerInventory : MonoBehaviour
                     newItem.inventory_quantity = amountToAdd;
 
                     playerInventory.Add(newItem);
+                    itemUI.UpdateInventoryUI();
                 }
             }
         }
@@ -76,6 +82,7 @@ public class PlayerInventory : MonoBehaviour
             newItem.inventory_quantity = amountToAdd;
 
             playerInventory.Add(newItem);
+            itemUI.UpdateInventoryUI();
         }
     }
     public void RemovefromInventory(int itemID, int amountToRemove)
@@ -92,6 +99,7 @@ public class PlayerInventory : MonoBehaviour
             if (itemtoFind.inventory_quantity <= 0)
             {
                 playerInventory.Remove(itemtoFind);
+                itemUI.UpdateInventoryUI();
             }
         }
         else
@@ -124,5 +132,4 @@ public class PlayerInventory : MonoBehaviour
             return null;
         }
     }
-
 }
