@@ -16,7 +16,7 @@ public class PlayerInventorySlot : MonoBehaviour
     public void UpdateText(string name)
     {
         TextMeshProUGUI text = GetComponentInChildren<TextMeshProUGUI>();
-        text.text = name;
+        text.text = name + " x" + itemQuantity;
     }
     public void ResetSlot()
     {

@@ -18,14 +18,14 @@ public class InventoryUI : MonoBehaviour
 
     public void UpdateInventoryUI()
     {
-        if (inventory.playerInventory.Count > 0)
+        if (inventory.playerInventory.Count >= 1)
         {
             int slotCount = 0;
             foreach (PlayerInventorySlot slot in inventorySlots)
             {
                 slot.UpdateText("");
 
-                if(slotCount < inventorySlots.Count)
+                if (slotCount < inventory.playerInventory.Count)
                 {
                     slot.itemIDReference = inventory.playerInventory[slotCount].inventory_itemNumberID;
                     slot.itemQuantity = inventory.playerInventory[slotCount].inventory_quantity;
@@ -38,7 +38,6 @@ public class InventoryUI : MonoBehaviour
                 else
                 {
                     slot.UpdateText("");
-                    slot.ResetSlot();
                     slotCount++;
                 }
                 if (slotCount >= inventorySlots.Count)

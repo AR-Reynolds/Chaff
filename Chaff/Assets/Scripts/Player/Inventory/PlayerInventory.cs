@@ -48,7 +48,6 @@ public class PlayerInventory : MonoBehaviour
     public void AddtoInventory(int itemID, int amountToAdd)
     {
         Item item = itemIndex.FindItem(itemID);
-        Debug.Log(item + "ojrog");
 
         if(playerInventory.Count > 0)
         {
@@ -59,6 +58,7 @@ public class PlayerInventory : MonoBehaviour
                 if (itemtoFind != null)
                 {
                     itemtoFind.inventory_quantity += amountToAdd;
+                    itemUI.UpdateInventoryUI();
                 }
                 else
                 {
@@ -91,16 +91,16 @@ public class PlayerInventory : MonoBehaviour
 
         if (playerInventory.Count > 0 && item != null)
         {
-            Debug.Log("This works");
             ItemInfo itemtoFind = playerInventory.Find((i) => i.inventory_itemID == item.itemID);
 
-            Debug.Log("Found");
             itemtoFind.inventory_quantity -= amountToRemove;
             if (itemtoFind.inventory_quantity <= 0)
             {
                 playerInventory.Remove(itemtoFind);
                 itemUI.UpdateInventoryUI();
+                return;
             }
+            itemUI.UpdateInventoryUI();
         }
         else
         {
