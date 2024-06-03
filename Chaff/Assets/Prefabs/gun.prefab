@@ -105,9 +105,12 @@ MonoBehaviour:
   bulletCount: 5
   damage: 1
   automatic: 1
-  oneTimeUse: 0
-  oneTimeAmmo: 3
-  itemtoRemove: {fileID: 0}
+  layer:
+    serializedVersion: 2
+    m_Bits: 2560
+  oneTimeUse: 1
+  oneTimeAmmo: 251
+  itemtoRemove: {fileID: 11400000, guid: 47afc00a348ba0e4f9b14c1903647fdd, type: 2}
   firingSpeed: 0.1
 --- !u!54 &1931691374394412118
 Rigidbody:

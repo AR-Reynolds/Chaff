@@ -13,10 +13,11 @@ public class GunSystem : MonoBehaviour
     [SerializeField] int bulletCount = 5;
     [SerializeField] int damage = 1;
     [SerializeField] bool automatic = true;
+    [SerializeField] LayerMask layer;
 
     [Header("Type of Utility")]
     [SerializeField] bool oneTimeUse = false;
-    [SerializeField] int oneTimeAmmo = 3;
+    [SerializeField] public int oneTimeAmmo = 3;
     [SerializeField] Item itemtoRemove;
 
     private float lastTimeShot = 0;
@@ -48,7 +49,7 @@ public class GunSystem : MonoBehaviour
     {
         Ray cursorRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(cursorRay, out hit))
+        if (Physics.Raycast(cursorRay, out hit, Mathf.Infinity, layer))
         {
             if(lastTimeShot + firingSpeed <= Time.time)
             {
@@ -59,6 +60,12 @@ public class GunSystem : MonoBehaviour
                     projectile.transform.LookAt(hit.point);
                     projectile.GetComponent<ProjectileBehavior>().projectileSpeed = bulletSpeed;
                     projectile.GetComponent<ProjectileBehavior>().damage = damage;
+                    oneTimeAmmo--;
+                }
+                if (oneTimeUse && oneTimeAmmo <= 0)
+                {
+                    Destroy(gameObject);
+                    FindFirstObjectByType<PlayerInventory>().RemovefromInventory(itemtoRemove.itemNumberID, 1);
                 }
 
             }

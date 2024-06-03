@@ -41,6 +41,13 @@ public class PlayerInventory : MonoBehaviour
         {
             RemovefromInventory(0, 15);
         }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            for(int i = 0; i < itemIndex.items.Length; i++)
+            {
+                AddtoInventory(i, 15);
+            }
+        }
         if (Input.GetKeyDown(KeyCode.X))
         {
             Cursor.lockState = CursorLockMode.None;
