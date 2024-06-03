@@ -195,6 +195,8 @@ MonoBehaviour:
   growthChance: 50
   harvestable: 0
   reusable: 1
+  resizable: 1
+  resizeScale: 0.25
   currentGrowthLevel: 0
   cropID: 0
   cropNameID: pumpkinPlant

@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] GameObject gun;
-    [SerializeField] GameObject utility;
     [SerializeField] GameObject placetoInstantiate;
 
     [SerializeField] public Canvas cropSelectionCanvas;
@@ -23,18 +21,6 @@ public class Player : MonoBehaviour
         {
             FindFirstObjectByType<PlayerInventory>().AddtoInventory(2, 1);
             FindFirstObjectByType<PlayerInventory>().AddtoInventory(4, 1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            GameObject thingtoLook = Instantiate(gun, placetoInstantiate.transform.position, Quaternion.identity);
-            thingtoLook.transform.parent = placetoInstantiate.transform;
-            FindFirstObjectByType<LookAtCursor>().gun = thingtoLook;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            GameObject thingtoLook = Instantiate(utility, placetoInstantiate.transform.position, Quaternion.identity);
-            thingtoLook.transform.parent = placetoInstantiate.transform;
-            FindFirstObjectByType<LookAtCursor>().gun = thingtoLook;
         }
     }
 

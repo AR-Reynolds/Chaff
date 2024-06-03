@@ -13,6 +13,7 @@ public class UtilitySystem : MonoBehaviour
 
     [Header("Type of Utility")]
     [SerializeField] bool oneTimeUse = true;
+    [SerializeField] Item itemtoRemove;
 
     private float lastTimeShot = 0;
     public float firingSpeed = 0.5f;
@@ -42,6 +43,7 @@ public class UtilitySystem : MonoBehaviour
         if(oneTimeUse)
         {
             Destroy(gameObject);
+            FindFirstObjectByType<PlayerInventory>().RemovefromInventory(itemtoRemove.itemNumberID, 1);
         }
     }
 

@@ -17,6 +17,8 @@ public class FarmObject : MonoBehaviour
     public float growthChance = 35f;
     public bool harvestable = false;
     public bool reusable = false;
+    public bool resizable = false;
+    public float resizeScale = 0.5f;
 
     [Header("References")]
     public int currentGrowthLevel = 0;
@@ -55,11 +57,11 @@ public class FarmObject : MonoBehaviour
             currentStage.transform.position = plantStage.transform.position;
         }
 
-        if(reusable)
+        if(resizable)
         {
             Vector3 currentGrowth = new Vector3(currentGrowthLevel, currentGrowthLevel, currentGrowthLevel);
 
-            growingCrop.transform.DOScale(growingCrop.transform.localScale + currentGrowth * 0.2f, 1);
+            growingCrop.transform.DOScale(growingCrop.transform.localScale + currentGrowth * resizeScale, 1);
         }
     }
 

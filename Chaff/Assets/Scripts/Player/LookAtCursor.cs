@@ -15,7 +15,7 @@ public class LookAtCursor : MonoBehaviour
     {
         Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(mouseRay, out hit, layer))
+        if (Physics.Raycast(mouseRay, out hit, Mathf.Infinity, layer))
         {
             Vector3 pos = hit.point - player.transform.position;
             if (pos.magnitude < lookDistance)

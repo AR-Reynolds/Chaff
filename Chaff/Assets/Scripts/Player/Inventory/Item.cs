@@ -13,4 +13,5 @@ public class Item : ScriptableObject
     public string itemID = null;
     public int itemNumberID = 0;
     public InventoryTag inventoryTag;
+    public GameObject physicalReference;
 }

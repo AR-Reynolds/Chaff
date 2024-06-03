@@ -16,4 +16,6 @@ MonoBehaviour:
   description: orange
   itemID: cropPumpkin
   itemNumberID: 1
-  inventoryTag: 0
+  inventoryTag: 1
+  physicalReference: {fileID: 7361387676564204252, guid: d30acee4241fae34e815e7fd44392174,
+    type: 3}

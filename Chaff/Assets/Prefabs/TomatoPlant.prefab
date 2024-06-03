@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outputs:
-  - item: {fileID: 11400000, guid: 1780e9e47d2a2454ca1734097fa96200, type: 2}
+  - item: {fileID: 11400000, guid: 47afc00a348ba0e4f9b14c1903647fdd, type: 2}
     outputChance: 100
     outputAmount: 1
   - item: {fileID: 11400000, guid: 1780e9e47d2a2454ca1734097fa96200, type: 2}
@@ -203,6 +203,8 @@ MonoBehaviour:
   growthChance: 25
   harvestable: 0
   reusable: 0
+  resizable: 1
+  resizeScale: 0.5
   currentGrowthLevel: 0
   cropID: 0
   cropNameID: tomatoPlant

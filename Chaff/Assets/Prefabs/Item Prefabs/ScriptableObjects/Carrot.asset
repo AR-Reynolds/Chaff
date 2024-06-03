@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Carrot
   description: A yummy carrot.
   itemID: cropCarrot
-  quantity: 0
   itemNumberID: 0
-  equipped: 0
-  inventoryTag: 0
+  inventoryTag: 1
+  physicalReference: {fileID: 1931691374394412124, guid: 01771239817d65e489bfbbccb38d1df3,
+    type: 3}

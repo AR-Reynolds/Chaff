@@ -38,6 +38,7 @@ public class InventoryUI : MonoBehaviour
                 else
                 {
                     slot.UpdateText("");
+                    slot.ResetSlot();
                     slotCount++;
                 }
                 if (slotCount >= inventorySlots.Count)

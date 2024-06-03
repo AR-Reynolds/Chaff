@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 using static UnityEditor.Progress;
+using Unity.VisualScripting;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -22,10 +24,12 @@ public class PlayerInventory : MonoBehaviour
 
     public ItemList itemIndex;
     InventoryUI itemUI;
+    HotbarManager hotbarManager;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         itemIndex = FindFirstObjectByType<ItemList>();
+        hotbarManager = FindFirstObjectByType<HotbarManager>();
         itemUI = FindFirstObjectByType<InventoryUI>();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -70,6 +74,10 @@ public class PlayerInventory : MonoBehaviour
 
                     playerInventory.Add(newItem);
                     itemUI.UpdateInventoryUI();
+                    if(newItem.inventoryTag == InventoryTag.Weapon || newItem.inventoryTag == InventoryTag.Utility)
+                    {
+                        hotbarManager.AssignToHotbar(itemIndex.FindItem(newItem.inventory_itemNumberID));
+                    }
                 }
             }
         }
@@ -83,6 +91,10 @@ public class PlayerInventory : MonoBehaviour
 
             playerInventory.Add(newItem);
             itemUI.UpdateInventoryUI();
+            if (newItem.inventoryTag == InventoryTag.Weapon || newItem.inventoryTag == InventoryTag.Utility)
+            {
+                hotbarManager.AssignToHotbar(itemIndex.FindItem(newItem.inventory_itemNumberID));
+            }
         }
     }
     public void RemovefromInventory(int itemID, int amountToRemove)
@@ -96,6 +108,7 @@ public class PlayerInventory : MonoBehaviour
             itemtoFind.inventory_quantity -= amountToRemove;
             if (itemtoFind.inventory_quantity <= 0)
             {
+                hotbarManager.RemoveFromHotbar(itemIndex.FindItem(itemtoFind.inventory_itemNumberID));
                 playerInventory.Remove(itemtoFind);
                 itemUI.UpdateInventoryUI();
                 return;
