@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GunSystem : MonoBehaviour
 {
+    [Header("Gun Settings")]
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject firepoint;
     [SerializeField] float bulletSpeed = 1;
@@ -13,8 +14,18 @@ public class GunSystem : MonoBehaviour
     [SerializeField] int damage = 1;
     [SerializeField] bool automatic = true;
 
+    [Header("Type of Utility")]
+    [SerializeField] bool oneTimeUse = false;
+    [SerializeField] int oneTimeAmmo = 3;
+    [SerializeField] Item itemtoRemove;
+
     private float lastTimeShot = 0;
     public float firingSpeed = 0.5f;
+
+    private void Awake()
+    {
+        FindFirstObjectByType<LookAtCursor>().gun = gameObject;
+    }
 
     public void Update()
     {

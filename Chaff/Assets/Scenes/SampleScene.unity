@@ -358,6 +358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hotbarItemName: 
   containsItem: 0
+  equipped: 0
   itemReference: {fileID: 0}
   hotbarIcon: {fileID: 0}
   hotbarTag: 1
@@ -1495,6 +1496,37 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!1 &439799490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 439799491}
+  m_Layer: 11
+  m_Name: meleeFirepoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &439799491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439799490}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.694}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 824734483}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &457322326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1631,6 +1663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hotbarItemName: 
   containsItem: 0
+  equipped: 0
   itemReference: {fileID: 0}
   hotbarIcon: {fileID: 0}
   hotbarTag: 1
@@ -1770,6 +1803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hotbarItemName: 
   containsItem: 0
+  equipped: 0
   itemReference: {fileID: 0}
   hotbarIcon: {fileID: 0}
   hotbarTag: 2
@@ -1909,6 +1943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hotbarItemName: 
   containsItem: 0
+  equipped: 0
   itemReference: {fileID: 0}
   hotbarIcon: {fileID: 0}
   hotbarTag: 2
@@ -2969,7 +3004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &824734479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2990,8 +3025,9 @@ MonoBehaviour:
   meleeCooldown: 0.5
   meleeDelay: 0.5
   meleeDamage: 10
-  meleeDebug: {fileID: 0}
-  meleeFirepoint: {fileID: 0}
+  meleeHitbox: {fileID: 1244137253970182141, guid: a2bee06c569f5af49b32a56734e057e8,
+    type: 3}
+  meleeFirepoint: {fileID: 439799490}
   rangedDamage: 10
   explosionDamage: 10
   ammoCount: 30
@@ -3088,7 +3124,8 @@ Transform:
   m_LocalPosition: {x: 1.63, y: 3.68, z: 0.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 439799491}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &824734484
@@ -3453,6 +3490,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Box_350x250x300_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2765075023489016845, guid: 687dbafc2b84b2846b9a4a7a7dae2a7e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3248315488105561783, guid: 687dbafc2b84b2846b9a4a7a7dae2a7e,
         type: 3}
@@ -5064,6 +5106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hotbarItemName: 
   containsItem: 0
+  equipped: 0
   itemReference: {fileID: 0}
   hotbarIcon: {fileID: 0}
   hotbarTag: 1
@@ -6991,8 +7034,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c313788d5038364baa04d8c34ccf10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 1931691374394412124, guid: 01771239817d65e489bfbbccb38d1df3, type: 3}
-  utility: {fileID: 7361387676564204252, guid: d30acee4241fae34e815e7fd44392174, type: 3}
   placetoInstantiate: {fileID: 1998670367}
   cropSelectionCanvas: {fileID: 2074771158}
   cropPlot: {fileID: 0}
@@ -7298,6 +7339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hotbarItemName: 
   containsItem: 0
+  equipped: 0
   itemReference: {fileID: 0}
   hotbarIcon: {fileID: 0}
   hotbarTag: 2

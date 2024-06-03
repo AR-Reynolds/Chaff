@@ -20,7 +20,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private float meleeCooldown = 0.5f;
     [SerializeField] private float meleeDelay = 0.5f;
     [SerializeField] private int meleeDamage = 10;
-    [SerializeField] GameObject meleeDebug;
+    [SerializeField] GameObject meleeHitbox;
     [SerializeField] GameObject meleeFirepoint;
 
     [Header("Ranged Attack Settings")]
@@ -78,10 +78,28 @@ public class EnemyScript : MonoBehaviour
         {
             gameObject.transform.LookAt(targetPos);
             agent.isStopped = true;
-            Debug.Log("melee");
-            yield return new WaitForSeconds(meleeDelay);
-            StopAllCoroutines();
-            StartCoroutine(cooldown);
+            if(meleeFirepoint.transform.childCount == 0)
+            {
+                yield return new WaitForSeconds(meleeDelay);
+                GameObject melee = Instantiate(meleeHitbox, meleeFirepoint.transform.position, Quaternion.identity);
+                melee.transform.parent = meleeFirepoint.transform;
+                Destroy(melee, 0.25f);
+                StopAllCoroutines();
+                StartCoroutine(cooldown);
+            }
+            else
+            {
+                for(int i = 0; i < meleeFirepoint.transform.childCount; i++)
+                {
+                    Destroy(meleeFirepoint.transform.GetChild(i).gameObject);
+                }
+                yield return new WaitForSeconds(meleeDelay);
+                GameObject melee = Instantiate(meleeHitbox, meleeFirepoint.transform.position, Quaternion.identity);
+                melee.transform.parent = meleeFirepoint.transform;
+                Destroy(melee, 0.25f);
+                StopAllCoroutines();
+                StartCoroutine(cooldown);
+            }
         }
         else
         {

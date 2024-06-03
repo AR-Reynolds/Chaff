@@ -17,6 +17,10 @@ public class UtilitySystem : MonoBehaviour
 
     private float lastTimeShot = 0;
     public float firingSpeed = 0.5f;
+    private void Awake()
+    {
+        FindFirstObjectByType<LookAtCursor>().gun = gameObject;
+    }
 
     public void Update()
     {
