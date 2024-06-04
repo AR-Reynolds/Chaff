@@ -10,6 +10,7 @@ public class UtilitySystem : MonoBehaviour
     [SerializeField] GameObject firepoint;
     [SerializeField] float projectileSpeed = 1;
     [SerializeField] int damage = 1;
+    [SerializeField] LayerMask layer;
 
     [Header("Type of Utility")]
     [SerializeField] bool oneTimeUse = true;
@@ -33,7 +34,7 @@ public class UtilitySystem : MonoBehaviour
     {
         Ray cursorRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(cursorRay, out hit))
+        if (Physics.Raycast(cursorRay, out hit, Mathf.Infinity, layer))
         {
             if(lastTimeShot + firingSpeed <= Time.time)
             {
@@ -42,12 +43,12 @@ public class UtilitySystem : MonoBehaviour
                 utilProjectile.transform.LookAt(hit.point);
                 utilProjectile.GetComponent<ProjectileBehavior>().projectileSpeed = projectileSpeed;
                 utilProjectile.GetComponent<ProjectileBehavior>().damage = damage;
+                if (oneTimeUse)
+                {
+                    Destroy(gameObject);
+                    FindFirstObjectByType<PlayerInventory>().RemovefromInventory(itemtoRemove.itemNumberID, 1);
+                }
             }
-        }
-        if(oneTimeUse)
-        {
-            Destroy(gameObject);
-            FindFirstObjectByType<PlayerInventory>().RemovefromInventory(itemtoRemove.itemNumberID, 1);
         }
     }
 

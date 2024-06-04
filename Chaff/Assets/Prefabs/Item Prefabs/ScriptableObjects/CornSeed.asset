@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d2fd3fdcc41a2249832571d06613938, type: 3}
-  m_Name: Carrot
+  m_Name: CornSeed
   m_EditorClassIdentifier: 
-  itemName: Carrot
-  description: Produce from carrots. Tiny and orange.
-  itemID: cropCarrot
-  itemNumberID: 0
-  inventoryTag: 1
-  physicalReference: {fileID: 1931691374394412124, guid: 01771239817d65e489bfbbccb38d1df3,
-    type: 3}
+  itemName: Corn Seeds
+  description: Kernels harvested from a corn plant. Use these to grow more corn!
+  itemID: seedCorn
+  itemNumberID: 7
+  inventoryTag: 2
+  physicalReference: {fileID: 0}

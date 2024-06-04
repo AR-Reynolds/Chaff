@@ -150,4 +150,14 @@ public class EnemyScript : MonoBehaviour
         StopAllCoroutines();
     }
 
+    private void OnMouseEnter()
+    {
+        HoverManager.ShowTooltip();
+    }
+
+    private void OnMouseExit()
+    {
+        HoverManager.HideTooltip();
+    }
+
 }

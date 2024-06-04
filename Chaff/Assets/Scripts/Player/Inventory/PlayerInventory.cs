@@ -37,15 +37,12 @@ public class PlayerInventory : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            RemovefromInventory(0, 15);
-        }
         if (Input.GetKeyDown(KeyCode.B))
         {
             for(int i = 0; i < itemIndex.items.Length; i++)
             {
                 AddtoInventory(i, 15);
+                FindFirstObjectByType<PlayerDungeonSystem>().DungeonAssignToList(itemIndex.items[i]);
             }
         }
         if (Input.GetKeyDown(KeyCode.X))

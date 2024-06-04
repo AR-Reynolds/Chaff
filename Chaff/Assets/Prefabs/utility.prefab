@@ -134,6 +134,9 @@ MonoBehaviour:
   firepoint: {fileID: 7361387675686430250}
   projectileSpeed: 10
   damage: 1
+  layer:
+    serializedVersion: 2
+    m_Bits: 2560
   oneTimeUse: 1
   itemtoRemove: {fileID: 11400000, guid: 0278df20e28ee7544a34edb4b0f9ecaa, type: 2}
   firingSpeed: 0.5

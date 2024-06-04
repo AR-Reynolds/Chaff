@@ -101,15 +101,15 @@ MonoBehaviour:
   bullet: {fileID: 6908118271617285334, guid: 577233eafa24b48408a527302601e01f, type: 3}
   firepoint: {fileID: 1931691375674343594}
   bulletSpeed: 10
-  bulletAmount: 5
-  bulletCount: 5
+  bulletAmount: 1
+  bulletCount: 1
   damage: 1
   automatic: 1
   layer:
     serializedVersion: 2
     m_Bits: 2560
   oneTimeUse: 1
-  oneTimeAmmo: 251
+  oneTimeAmmo: 25
   itemtoRemove: {fileID: 11400000, guid: 47afc00a348ba0e4f9b14c1903647fdd, type: 2}
   firingSpeed: 0.1
 --- !u!54 &1931691374394412118

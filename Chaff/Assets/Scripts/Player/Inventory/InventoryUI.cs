@@ -10,14 +10,22 @@ public class InventoryUI : MonoBehaviour
     PlayerInventory inventory;
     public List<PlayerInventorySlot> inventorySlots;
 
+    public HoverPreviewBehavior hoverReference;
+
     private void Awake()
     {
         player = FindFirstObjectByType<Player>();
         inventory = FindFirstObjectByType<PlayerInventory>();
+        hoverReference = FindFirstObjectByType<HoverPreviewBehavior>();
     }
 
     public void UpdateInventoryUI()
     {
+        foreach (PlayerInventorySlot slot in inventorySlots)
+        {
+            slot.ResetSlot();
+            slot.UpdateText("");
+        }
         if (inventory.playerInventory.Count >= 1)
         {
             int slotCount = 0;
@@ -37,14 +45,9 @@ public class InventoryUI : MonoBehaviour
                 }
                 else
                 {
-                    slot.UpdateText("");
                     slot.ResetSlot();
+                    slot.UpdateText("");
                     slotCount++;
-                }
-                if (slotCount >= inventorySlots.Count)
-                {
-                    slotCount = 0;
-                    return;
                 }
             }
         }

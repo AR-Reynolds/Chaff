@@ -15,6 +15,7 @@ public class FarmObject : MonoBehaviour
     [Header("Plant Settings")]
     public int maxGrowthLevel = 5;
     public float growthChance = 35f;
+    public float growthRandomness = 0.5f;
     public bool harvestable = false;
     public bool reusable = false;
     public bool resizable = false;
@@ -35,7 +36,11 @@ public class FarmObject : MonoBehaviour
     private void Awake()
     {
         initSize = transform.localScale;
-        growthChance += (Random.Range(-15, 10));
+        growthChance += (Random.Range(-15 * growthRandomness, 15 * growthRandomness));
+        if(growthChance < 5)
+        {
+            growthChance = 5;
+        }
     }
 
     public void GrowthScale()
@@ -52,7 +57,7 @@ public class FarmObject : MonoBehaviour
             {
                 Destroy(plantStage.transform.GetChild(i).gameObject);
             }
-            GameObject currentStage = Instantiate(plantStages[currentGrowthLevel]);
+            GameObject currentStage = Instantiate(plantStages[currentGrowthLevel - 1]);
             currentStage.transform.parent = plantStage.transform;
             currentStage.transform.position = plantStage.transform.position;
         }

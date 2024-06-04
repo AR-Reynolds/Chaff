@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: TomatoSeed
   m_EditorClassIdentifier: 
   itemName: Tomato Seeds
-  description: tomato
+  description: Seeds from a tomato plant. Plant these to grow more tomatoes!
   itemID: seedTomato
-  itemNumberID: 4
+  itemNumberID: 5
   inventoryTag: 2
+  physicalReference: {fileID: 0}
