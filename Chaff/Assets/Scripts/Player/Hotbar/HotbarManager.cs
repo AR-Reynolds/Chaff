@@ -33,8 +33,6 @@ public class HotbarManager : MonoBehaviour
 
                 EquipPhysicalItem(hotbarSlots[0]);
                 hotbarSlots[0].equipped = true;
-                hotbarSlots[0].GetAmmo();
-                hotbarSlots[0].RestoreAmmo();
             }
             return;
         }

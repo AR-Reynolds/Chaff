@@ -152,20 +152,4 @@ public class EnemyScript : MonoBehaviour
         StopAllCoroutines();
     }
 
-    private void OnMouseEnter()
-    {
-        HoverPreviewBehavior hoverRef = FindFirstObjectByType<HoverManager>().hoverReference;
-
-        HoverManager.ShowTooltip();
-        hoverRef.EnableEnemyTooltip(tooltipData.tooltipName, tooltipData.tooltipDescription);
-    }
-
-    private void OnMouseExit()
-    {
-        HoverPreviewBehavior hoverRef = FindFirstObjectByType<HoverManager>().hoverReference;
-
-        HoverManager.HideTooltip();
-        hoverRef.DisableTooltip();
-    }
-
 }

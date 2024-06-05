@@ -11,20 +11,4 @@ public class HotbarSlot : MonoBehaviour
     public Item itemReference = null;
     public Image hotbarIcon = null;
     public InventoryTag hotbarTag;
-
-    private int tempAmmo = 0;
-
-    public void GetAmmo()
-    {
-        tempAmmo = FindFirstObjectByType<GunSystem>().oneTimeAmmo;
-    }
-
-    public void RestoreAmmo()
-    {
-        if (tempAmmo > 0)
-        {
-            FindFirstObjectByType<GunSystem>().oneTimeAmmo = tempAmmo;
-        }
-    }
-
 }

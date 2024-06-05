@@ -143,6 +143,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3349443903986629029}
   - component: {fileID: 5584684995422196628}
+  - component: {fileID: 5977391732815194472}
+  - component: {fileID: 174804508462656603}
   m_Layer: 0
   m_Name: CarrotPlant
   m_TagString: Untagged
@@ -216,6 +218,42 @@ MonoBehaviour:
   harvestTrigger: {fileID: 1540928631478972507}
   growingCrop: {fileID: 3895278302429209360}
   plantStage: {fileID: 4903172833618654019}
+--- !u!65 &5977391732815194472
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2177270505201055388}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.23, z: 0}
+--- !u!114 &174804508462656603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2177270505201055388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6dc413442f1ba43bd988279bb4ecae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipName: Carrot Plant
+  tooltipTag: Crop
+  tooltipDescription: 'A patch of carrots. '
 --- !u!1 &4903172833618654019
 GameObject:
   m_ObjectHideFlags: 0

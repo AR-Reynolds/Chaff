@@ -27,7 +27,6 @@ public class PlayerInventory : MonoBehaviour
     HotbarManager hotbarManager;
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         itemIndex = FindFirstObjectByType<ItemList>();
         hotbarManager = FindFirstObjectByType<HotbarManager>();
         itemUI = FindFirstObjectByType<InventoryUI>();
@@ -43,6 +42,16 @@ public class PlayerInventory : MonoBehaviour
             {
                 AddtoInventory(i, 15);
                 FindFirstObjectByType<PlayerDungeonSystem>().DungeonAssignToList(itemIndex.items[i]);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            for (int i = 0; i < itemIndex.items.Length; i++)
+            {
+                if(itemIndex.items[i].inventoryTag == InventoryTag.Utility)
+                {
+                    AddtoInventory(i, 1);
+                }
             }
         }
         if (Input.GetKeyDown(KeyCode.X))

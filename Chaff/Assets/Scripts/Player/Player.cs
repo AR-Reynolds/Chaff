@@ -15,16 +15,6 @@ public class Player : MonoBehaviour
         cropSelectionCanvas.enabled = false;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            FindFirstObjectByType<PlayerInventory>().AddtoInventory(2, 1);
-            FindFirstObjectByType<PlayerInventory>().AddtoInventory(4, 1);
-        }
-    }
-
-
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "PlantTrigger")
