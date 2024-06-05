@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1396,12 +1395,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &345669059
 GameObject:
   m_ObjectHideFlags: 0
@@ -3980,6 +3979,7 @@ GameObject:
   - component: {fileID: 824734479}
   - component: {fileID: 824734485}
   - component: {fileID: 824734484}
+  - component: {fileID: 824734486}
   m_Layer: 11
   m_Name: Enemy
   m_TagString: Untagged
@@ -4151,6 +4151,22 @@ MonoBehaviour:
   enemyShield: 100
   enemyShieldRegenTick: 0.05
   enemyShieldRegenDelay: 5
+--- !u!114 &824734486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824734478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6dc413442f1ba43bd988279bb4ecae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipName: BAd guy
+  tooltipDescription: 'uh hhhh
+
+    yah '
 --- !u!1 &832249056
 GameObject:
   m_ObjectHideFlags: 0

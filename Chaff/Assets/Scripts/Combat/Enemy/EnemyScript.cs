@@ -39,6 +39,7 @@ public class EnemyScript : MonoBehaviour
     private bool canAttack = true;
     private int secretAmmo;
     NavMeshAgent agent;
+    EnemyTooltipData tooltipData;
     Vector3 home;
 
     private void Start()
@@ -46,6 +47,7 @@ public class EnemyScript : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         home = transform.position;
         agent = GetComponent<NavMeshAgent>();
+        tooltipData = GetComponent<EnemyTooltipData>();
         secretAmmo = ammoCount;
     }
     private void Update()
@@ -152,12 +154,18 @@ public class EnemyScript : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        HoverPreviewBehavior hoverRef = FindFirstObjectByType<HoverManager>().hoverReference;
+
         HoverManager.ShowTooltip();
+        hoverRef.EnableEnemyTooltip(tooltipData.tooltipName, tooltipData.tooltipDescription);
     }
 
     private void OnMouseExit()
     {
+        HoverPreviewBehavior hoverRef = FindFirstObjectByType<HoverManager>().hoverReference;
+
         HoverManager.HideTooltip();
+        hoverRef.DisableTooltip();
     }
 
 }

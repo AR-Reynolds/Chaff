@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using Unity.Loading;
+using static UnityEditor.Progress;
 
 public class HoverPreviewBehavior : MonoBehaviour
 {
@@ -43,7 +44,18 @@ public class HoverPreviewBehavior : MonoBehaviour
         }
     }
 
-    public void EnableTooltip(Item item)
+    public void EnableEnemyTooltip(string name, string description)
+    {
+        gameObject.SetActive(true);
+        tooltipName = name;
+        tooltipDescription = description;
+
+        titleText.text = tooltipName;
+        descriptionText.text = tooltipDescription;
+        transform.position = Input.mousePosition;
+    }
+
+    public void EnableItemTooltip(Item item)
     {
         gameObject.SetActive(true);
         tooltipName = item.itemName;

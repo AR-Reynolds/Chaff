@@ -39,7 +39,7 @@ public class PlayerInventorySlot : MonoBehaviour, IPointerEnterHandler, IPointer
         if(itemReference != null)
         {
             HoverManager.ShowTooltip();
-            hoverRef.EnableTooltip(itemReference);
+            hoverRef.EnableItemTooltip(itemReference);
         }
     }
 
