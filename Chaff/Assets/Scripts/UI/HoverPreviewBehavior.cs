@@ -42,13 +42,10 @@ public class HoverPreviewBehavior : MonoBehaviour
 
         if (gameObject.activeSelf)
         {
-            Vector2 position = Input.mousePosition;
-            transform.position = position;
+            Vector2 localPoint;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(GetComponent<RectTransform>(), Input.mousePosition, Camera.main, out localPoint);
 
-            float pivotX = position.x / Screen.width;
-            float pivotY = position.y / Screen.height;
-
-            recTransform.pivot = new Vector2(pivotX, pivotY + 1);
+            transform.localPosition = localPoint;
         }
     }
 
