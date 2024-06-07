@@ -25,12 +25,14 @@ public class HoverPreviewBehavior : MonoBehaviour
     [SerializeField] int characterWrapLimit;
 
     private Tween tooltipFade;
+    private RectTransform canvasTransform;
 
     private void Awake()
     {
         tooltipFade = DOTween.Sequence();
         image = GetComponent<Image>();
         recTransform = GetComponent<RectTransform>();
+        canvasTransform = transform.parent.GetComponent<RectTransform>();
         gameObject.SetActive(false);
     }
 
@@ -42,10 +44,17 @@ public class HoverPreviewBehavior : MonoBehaviour
 
         if (gameObject.activeSelf)
         {
-            Vector2 localPoint;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(GetComponent<RectTransform>(), Input.mousePosition, Camera.main, out localPoint);
+            Vector2 anchor = recTransform.anchoredPosition = Input.mousePosition / canvasTransform.localScale.x;
+            if(anchor.x + recTransform.rect.width > canvasTransform.rect.width)
+            {
+                anchor.x = canvasTransform.rect.width - recTransform.rect.width;
+            }
+            if (anchor.y + recTransform.rect.height > canvasTransform.rect.height)
+            {
+                anchor.y = canvasTransform.rect.height - recTransform.rect.height;
+            }
 
-            transform.localPosition = localPoint;
+            recTransform.anchoredPosition = anchor;
         }
     }
 

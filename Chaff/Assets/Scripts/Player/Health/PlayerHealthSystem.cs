@@ -62,47 +62,22 @@ public class PlayerHealthSystem : MonoBehaviour
                 playerHealth = 0;
             }
         }
-
-        /* foreach(var heart in healthListing)
-          {
-            if (healthRemaining <= 0)
-            {
-                return;
-            }
-            if(heart.heartValue <= 0)
-            {
-                heart.heartValue = 0;
-                continue;
-            }
-            int tempHeartStore = heart.heartValue;
-
-            heart.heartValue -= healthRemaining;
-            if (heart.heartValue <= 0)
-            {
-                heart.heartValue = 0;
-            }
-            Debug.Log(heart.heartValue);
-            heart.UpdateHeartUI(heart.heartValue);
-            healthRemaining -= tempHeartStore;
-          }
-        if (playerHealth < 0)
-        {
-            playerHealth = 0;
-        }*/
     }
     public void PlayerHeal(int health)
     {
-        if (playerHealth >= maxHealth)
+        playerHealth += health;
+        healthRemaining = health;
+        if (playerHealth >= maxHealth || healthRemaining >= maxHealth)
         {
             playerHealth = maxHealth;
+            foreach(var heart in healthListing)
+            {
+                heart.heartValue = 20;
+                heart.UpdateHeartUI(heart.heartValue);
+            }
             return;
         }
 
-        healthRemaining = health;
-        if(healthRemaining > maxHealth)
-        {
-            healthRemaining = maxHealth;
-        }
         foreach (var heart in healthListing)
         {
             if (healthRemaining <= 0)
@@ -114,7 +89,6 @@ public class PlayerHealthSystem : MonoBehaviour
                 heart.heartValue = 20;
                 continue;
             }
-            int tempHeartStore = heart.heartValue;
 
             heart.heartValue += healthRemaining;
             if (heart.heartValue >= 20)
@@ -123,12 +97,7 @@ public class PlayerHealthSystem : MonoBehaviour
             }
             Debug.Log(heart.heartValue);
             heart.UpdateHeartUI(heart.heartValue);
-            healthRemaining -= tempHeartStore;
-        }
-        playerHealth += health;
-        if(playerHealth > maxHealth)
-        {
-            playerHealth = maxHealth;
+            healthRemaining -= heart.heartValue;
         }
     }
 

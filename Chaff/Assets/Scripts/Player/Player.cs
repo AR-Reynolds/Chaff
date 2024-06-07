@@ -7,30 +7,53 @@ public class Player : MonoBehaviour
 {
     [SerializeField] GameObject placetoInstantiate;
 
-    [SerializeField] public Canvas cropSelectionCanvas;
+    public Canvas cropSelectionCanvas;
+    public Canvas recipeSelectionCanvas;
+    public List<CraftingRecipeSlot> recipeSlots;
     public GameObject cropPlot;
+
+    [SerializeField] private CraftingManager manager;
 
     private void Awake()
     {
         cropSelectionCanvas.enabled = false;
+        recipeSelectionCanvas.enabled = true; 
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "PlantTrigger")
+        switch (other.gameObject.tag)
         {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                FindFirstObjectByType<FarmManager>().Harvest(other.gameObject.transform.parent.gameObject);
-            }
+            case "PlantTrigger":
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    FindFirstObjectByType<FarmManager>().Harvest(other.gameObject.transform.parent.gameObject);
+                }
+                break;
+            case "CraftingTrigger":
+                if (manager == null)
+                {
+                    manager = other.transform.parent.GetComponent<CraftingManager>();
+                }
+                break;
+            case "CropPlot":
+                if (!other.gameObject.GetComponent<CropPlot>().plotUsed)
+                {
+                    cropSelectionCanvas.enabled = true;
+                    cropPlot = other.gameObject;
+                }
+                break;
+
         }
-        else if (other.gameObject.tag == "CropPlot")
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "CraftingTrigger")
         {
-            if (!other.gameObject.GetComponent<CropPlot>().plotUsed)
-            {
-                cropSelectionCanvas.enabled = true;
-                cropPlot = other.gameObject;
-            }
+            recipeSelectionCanvas.enabled = true;
+            manager = other.transform.parent.GetComponent<CraftingManager>();
+            manager.SetRecipes();
         }
     }
 
@@ -40,6 +63,26 @@ public class Player : MonoBehaviour
         {
             cropSelectionCanvas.enabled = false;
             cropPlot = null;
+        }
+        else if (other.gameObject.tag == "CraftingTrigger")
+        {
+            recipeSelectionCanvas.enabled = false;
+            manager = null;
+        }
+    }
+
+    public void Craft()
+    {
+        if(manager != null)
+        {
+            manager.CraftItem();
+        }
+    }
+    public void SelectRecipe(Button button)
+    {
+        if (manager != null && button.GetComponent<CraftingRecipeSlot>().slotRecipe != null)
+        {
+            manager.selectedRecipe = button.GetComponent<CraftingRecipeSlot>().slotRecipe;
         }
     }
 }
