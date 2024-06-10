@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Rendering.CameraUI;
 
 public class FarmManager : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class FarmManager : MonoBehaviour
             int growthCheck = 0;
             if (item.currentGrowthLevel != item.maxGrowthLevel)
             {
-                growthCheck = Random.Range(0, 100);
+                growthCheck = item.gameObject.transform.parent.GetComponentInParent<CropPlot>().fertilized ? Random.Range(((int)item.growthChance) - 35, ((int)item.growthChance) + 35) : Random.Range(0, 100);
             }
 
             if (item.currentGrowthLevel != item.maxGrowthLevel && growthCheck <= item.growthChance)
@@ -73,11 +74,18 @@ public class FarmManager : MonoBehaviour
         }
         if(farmObj.reusable)
         {
+            int fertilizerConsumeChance = Random.Range(0, 100);
+
             farmObj.harvestable = false;
+            if (fertilizerConsumeChance <= 35)
+            {
+                plantToHarvest.transform.parent.parent.GetComponent<CropPlot>().fertilized = false;
+            }
             farmObj.ResetPlant();
             foreach(var output in farmObj.outputs)
             {
                 int randomChance = Random.Range(0, 100);
+
                 if(randomChance <= output.outputChance)
                 {
                     FindFirstObjectByType<PlayerInventory>().AddtoInventory(output.item.itemNumberID, output.outputAmount);
@@ -102,6 +110,7 @@ public class FarmManager : MonoBehaviour
                 currentCrops.Remove(cropToRemove);
             }
             plantToHarvest.transform.parent.parent.GetComponent<CropPlot>().plotUsed = false;
+            plantToHarvest.transform.parent.parent.GetComponent<CropPlot>().fertilized = false;
             Destroy(plantToHarvest);
         }
     }

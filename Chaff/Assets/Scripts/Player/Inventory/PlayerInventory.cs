@@ -87,10 +87,6 @@ public class PlayerInventory : MonoBehaviour
 
                     playerInventory.Add(newItem);
                     itemUI.UpdateInventoryUI();
-                    if(newItem.inventoryTag == InventoryTag.Weapon || newItem.inventoryTag == InventoryTag.Utility)
-                    {
-                        hotbarManager.AssignToHotbar(itemIndex.FindItem(newItem.inventory_itemNumberID));
-                    }
                 }
             }
         }
@@ -104,10 +100,6 @@ public class PlayerInventory : MonoBehaviour
 
             playerInventory.Add(newItem);
             itemUI.UpdateInventoryUI();
-            if (newItem.inventoryTag == InventoryTag.Weapon || newItem.inventoryTag == InventoryTag.Utility)
-            {
-                hotbarManager.AssignToHotbar(itemIndex.FindItem(newItem.inventory_itemNumberID));
-            }
         }
     }
     public void RemovefromInventory(int itemID, int amountToRemove)
@@ -121,7 +113,6 @@ public class PlayerInventory : MonoBehaviour
             itemtoFind.inventory_quantity -= amountToRemove;
             if (itemtoFind.inventory_quantity <= 0)
             {
-                hotbarManager.RemoveFromHotbar(itemIndex.FindItem(itemtoFind.inventory_itemNumberID));
                 playerInventory.Remove(itemtoFind);
                 itemUI.UpdateInventoryUI();
                 return;

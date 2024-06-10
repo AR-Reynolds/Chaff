@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         cropSelectionCanvas.enabled = false;
-        recipeSelectionCanvas.enabled = true; 
+        recipeSelectionCanvas.enabled = false; 
     }
 
     private void OnTriggerStay(Collider other)

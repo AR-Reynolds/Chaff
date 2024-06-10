@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CropPlot : MonoBehaviour
 {
+    public bool fertilized = false;
     public bool plotUsed = false;
     public Transform plantPos;
 

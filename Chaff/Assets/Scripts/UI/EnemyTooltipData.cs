@@ -15,10 +15,18 @@ public class EnemyTooltipData : MonoBehaviour
         HoverPreviewBehavior hoverRef = FindFirstObjectByType<HoverManager>().hoverReference;
 
         HoverManager.ShowTooltip();
-        if(GetComponent<FarmObject>() != null)
+        if (GetComponent<CropPlot>() != null)
+        {
+            if(GetComponent<CropPlot>().plotUsed)
+            {
+                HoverManager.HideTooltip();
+                hoverRef.DisableTooltip();
+                return;
+            }
+        }
+        if (GetComponent<FarmObject>() != null)
         {
             FarmObject objectReference = GetComponent<FarmObject>();
-
             if(objectReference.harvestable)
             {
                 hoverRef.EnableTooltip(tooltipName, tooltipDescription + "\nMax Growth Stage: " + objectReference.maxGrowthLevel + ", Growth Chance: " + objectReference.growthChance + "\n<b>This crop is ready to be harvested.</b>", tooltipTag);
@@ -27,7 +35,6 @@ public class EnemyTooltipData : MonoBehaviour
             {
                 hoverRef.EnableTooltip(tooltipName, tooltipDescription + "\nMax Growth Stage: " + objectReference.maxGrowthLevel + ", Growth Chance: " + objectReference.growthChance, tooltipTag);
             }
-            
         }
         else
         {

@@ -60,9 +60,9 @@ public class HoverPreviewBehavior : MonoBehaviour
 
     public void EnableTooltip(string name, string description, string tag)
     {
-        GetComponent<Image>().color = new Color32(31, 31, 31, 0);
+        GetComponent<Image>().color = new Color32(61, 61, 61, 0);
         gameObject.SetActive(true);
-        Fade(0.8f, 0.1f, () => { });
+        Fade(1f, 0.1f, () => { });
         tooltipName = name;
         tooltipDescription = description;
 

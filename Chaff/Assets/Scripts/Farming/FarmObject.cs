@@ -66,7 +66,7 @@ public class FarmObject : MonoBehaviour
         {
             Vector3 currentGrowth = new Vector3(currentGrowthLevel, currentGrowthLevel, currentGrowthLevel);
 
-            growingCrop.transform.DOScale(growingCrop.transform.localScale + currentGrowth * resizeScale, 1);
+            growingCrop.transform.DOScale(growingCrop.transform.localScale + currentGrowth * resizeScale, 1.5f);
         }
     }
 
