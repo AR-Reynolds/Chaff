@@ -16,6 +16,7 @@ public class FarmObject : MonoBehaviour
     public int maxGrowthLevel = 5;
     public float growthChance = 35f;
     public float growthRandomness = 0.5f;
+    public bool lastStageOnly = false;
     public bool harvestable = false;
     public bool reusable = false;
     public bool resizable = false;
@@ -35,6 +36,10 @@ public class FarmObject : MonoBehaviour
 
     private void Awake()
     {
+        if(lastStageOnly)
+        {
+            growingCrop.SetActive(false);
+        }
         initSize = transform.localScale;
         growthChance += (Random.Range(-15 * growthRandomness, 15 * growthRandomness));
         if(growthChance < 5)
@@ -67,6 +72,13 @@ public class FarmObject : MonoBehaviour
             Vector3 currentGrowth = new Vector3(currentGrowthLevel, currentGrowthLevel, currentGrowthLevel);
 
             growingCrop.transform.DOScale(growingCrop.transform.localScale + currentGrowth * resizeScale, 1.5f);
+        }
+        if(lastStageOnly)
+        {
+            if(currentGrowthLevel >= maxGrowthLevel)
+            {
+                growingCrop.SetActive(true);
+            }
         }
     }
 

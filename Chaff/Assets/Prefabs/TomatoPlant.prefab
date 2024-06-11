@@ -210,7 +210,7 @@ MonoBehaviour:
   harvestable: 0
   reusable: 0
   resizable: 1
-  resizeScale: 0.25
+  resizeScale: 0.05
   currentGrowthLevel: 0
   cropID: 0
   cropNameID: tomatoPlant

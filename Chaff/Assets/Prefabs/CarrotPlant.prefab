@@ -203,10 +203,11 @@ MonoBehaviour:
   - {fileID: 1000013410243764, guid: 56b36da289d9a9e4cb37c5f588e23748, type: 3}
   - {fileID: 1000013410243764, guid: 56b36da289d9a9e4cb37c5f588e23748, type: 3}
   - {fileID: 1000013410243764, guid: 56b36da289d9a9e4cb37c5f588e23748, type: 3}
-  - {fileID: 1000013410243764, guid: 56b36da289d9a9e4cb37c5f588e23748, type: 3}
+  - {fileID: 1000014111768446, guid: 2cf13a738fc434c46bda5ebf7ca44756, type: 3}
   maxGrowthLevel: 5
   growthChance: 25
   growthRandomness: 0
+  lastStageOnly: 1
   harvestable: 0
   reusable: 0
   resizable: 1

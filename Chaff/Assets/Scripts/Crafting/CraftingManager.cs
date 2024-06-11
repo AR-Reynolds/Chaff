@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CraftingManager : MonoBehaviour
 {
     [SerializeField] private List<Recipe> recipes;
+
+    [SerializeField] TextMeshProUGUI craftingText;
+    [SerializeField] Slider progressBar;
 
     [SerializeField] public Recipe selectedRecipe;
     bool isCrafting = false;
@@ -14,6 +18,7 @@ public class CraftingManager : MonoBehaviour
     private void Awake()
     {
         player = FindFirstObjectByType<Player>();
+        progressBar.gameObject.GetComponentInParent<Canvas>().enabled = false;
     }
 
     public void SetRecipes()
@@ -90,10 +95,23 @@ public class CraftingManager : MonoBehaviour
         if (seconds > 0)
         {
             isCrafting = true;
+            progressBar.gameObject.GetComponentInParent<Canvas>().enabled = true;
+            progressBar.value = 0;
+            progressBar.maxValue = seconds;
+            craftingText.text = "Crafting " + selectedRecipe.outputQuantity + "x " + selectedRecipe.outputItem.itemName;
+
+            while (progressBar.value < progressBar.maxValue)
+            {
+                progressBar.value = Time.deltaTime;
+            }
             yield return new WaitForSeconds(seconds);
         }
         isCrafting = false;
         inv.AddtoInventory(selectedRecipe.outputItem.itemNumberID, selectedRecipe.outputQuantity);
         Debug.Log("Done craft!");
+        if(progressBar.gameObject.GetComponentInParent<Canvas>().enabled)
+        {
+            progressBar.gameObject.GetComponentInParent<Canvas>().enabled = false;
+        }
     }
 }
