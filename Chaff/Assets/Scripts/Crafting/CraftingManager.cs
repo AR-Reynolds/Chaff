@@ -95,16 +95,16 @@ public class CraftingManager : MonoBehaviour
         if (seconds > 0)
         {
             isCrafting = true;
-            progressBar.gameObject.GetComponentInParent<Canvas>().enabled = true;
             progressBar.value = 0;
             progressBar.maxValue = seconds;
+            progressBar.gameObject.GetComponentInParent<Canvas>().enabled = true;
             craftingText.text = "Crafting " + selectedRecipe.outputQuantity + "x " + selectedRecipe.outputItem.itemName;
 
             while (progressBar.value < progressBar.maxValue)
             {
-                progressBar.value = Time.deltaTime;
+                yield return new WaitForSeconds(0.001f);
+                progressBar.value += 1 * Time.deltaTime;
             }
-            yield return new WaitForSeconds(seconds);
         }
         isCrafting = false;
         inv.AddtoInventory(selectedRecipe.outputItem.itemNumberID, selectedRecipe.outputQuantity);
